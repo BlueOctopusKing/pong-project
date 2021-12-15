@@ -5,12 +5,11 @@ input.onButtonPressed(Button.A, function () {
     }
 })
 input.onButtonPressed(Button.B, function () {
-    if (paddleA.get(LedSpriteProperty.X) < 0) {
+    if (paddleA.get(LedSpriteProperty.X) < 3) {
         paddleA.change(LedSpriteProperty.X, 1)
         paddleB.change(LedSpriteProperty.X, 1)
     }
 })
-let sprite = 0
 let paddleB: game.LedSprite = null
 let paddleA: game.LedSprite = null
 paddleA = game.createSprite(2, 4)
@@ -25,14 +24,14 @@ basic.forever(function () {
         ball.change(LedSpriteProperty.X, direction_X * -1)
         ball.change(LedSpriteProperty.Y, -1)
         direction_Y = -1
-        sprite = randint(-1, 1)
+        direction_X = randint(-1, 1)
     } else {
         if (ball.get(LedSpriteProperty.Y) <= 0) {
             direction_Y = 1
             direction_Y = randint(-1, 1)
         } else if (ball.get(LedSpriteProperty.Y) >= 4) {
             ball.set(LedSpriteProperty.Blink, 1)
-            basic.pause(500)
+            basic.pause(2000)
             game.gameOver()
         }
         if (ball.get(LedSpriteProperty.X) <= 0) {
